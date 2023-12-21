@@ -21,4 +21,5 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('/upload', 'Api\v1\MenuItemController@upload');
     $router->get('/view-all', 'Api\v1\MenuItemController@viewAll');
     $router->get('/view/{id}', 'Api\v1\MenuItemController@view');
+    $router->delete('/delete/{id}', 'Api\v1\MenuItemController@delete');
 });

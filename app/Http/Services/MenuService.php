@@ -27,7 +27,7 @@ class MenuService
 
     public function getMenuItemById($id)
     {
-        return MenuItem::with('menuItemOptions')->find($id);
+        return MenuItem::find($id);
     }
 
     public function deleteMenuItem($id)
@@ -37,7 +37,6 @@ class MenuService
         if ($menuItem) {
             return $menuItem->delete();
         }
-
         return false;
     }
 

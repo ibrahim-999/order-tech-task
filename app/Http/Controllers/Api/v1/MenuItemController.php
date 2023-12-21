@@ -47,5 +47,15 @@ class MenuItemController extends ApiController
         }
 
     }
+    public function delete($id)
+    {
+        $menuItem = $this->menuService->deleteMenuItem($id);
+        if (!$menuItem) {
+            return $this->failResourceNotFoundMessage('Menu item', 'Menu item not found');
+        } else {
+            return $this->successDeleteMessage('Deleted');
+        }
+
+    }
 
 }
