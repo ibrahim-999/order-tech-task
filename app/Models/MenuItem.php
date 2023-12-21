@@ -13,7 +13,6 @@ class MenuItem extends Model
     protected $table = 'menu_items';
 
     protected $fillable = [
-        'data',
         'item_name',
         'item_description',
         'price',

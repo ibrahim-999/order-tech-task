@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\MenuItem;
+
 
 class MenuItemOption extends Model
 {
@@ -22,6 +22,5 @@ class MenuItemOption extends Model
     {
         return $this->belongsTo(MenuItem::class,'menu_item_id');
     }
- 
 }
 
