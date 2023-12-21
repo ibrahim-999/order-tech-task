@@ -20,7 +20,7 @@ trait ApiResponseTrait
         ];
     }
 
-    public function failExceptionMessage($error_code, $file, $line, $message)
+    public function failExceptionMessage($error_code, $message)
     {
         $data = [
             'success' => false,
@@ -29,8 +29,6 @@ trait ApiResponseTrait
             'reason' => 'Exceptions',
             'message' => $message,
             'error_code' => $error_code,
-            'file' => $file,
-            'line' => $line,
         ];
 
         info(implode(', ', $message));

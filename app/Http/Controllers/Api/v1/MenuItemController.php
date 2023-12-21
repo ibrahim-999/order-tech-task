@@ -29,4 +29,24 @@ class MenuItemController extends ApiController
 
         return $this->successCreateMessage('File has been uploaded successfully');
     }
+
+    public function viewAll()
+    {
+        $menuItems = $this->menuService->getAllMenuItems();
+        if ($menuItems)
+        {
+            return $this->successShowPaginationResponse($menuItems, '','list');
+        }
+        return $this->failExceptionMessage(404,' not found');
+    }
+    public function view($id): \Illuminate\Http\JsonResponse
+    {
+        $menuItem = $this->importService->showFileData($id,public_path('menuItems.json'));
+        if ($menuItem ) {
+            return $this->successShowDataResponse($menuItem, 'menu item');
+        }else {
+            return $this->failExceptionMessage(404, 'Menu item not found');
+        }
+
+    }
 }
