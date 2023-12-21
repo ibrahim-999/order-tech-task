@@ -116,14 +116,14 @@ trait ApiResponseTrait
         ];
     }
 
-    public function successCreateMessage()
+    public function successCreateMessage($message)
     {
         return [
             'success' => true,
             'type' => 'success',
             'code' => HttpRequestStatusEnum::STATUS_CREATED->value,
-            'reason' => 'Create',
-            'message' => trans('messages.Resource_created_successfully'),
+            'reason' => 'Store',
+            'message' => $message,
         ];
     }
 

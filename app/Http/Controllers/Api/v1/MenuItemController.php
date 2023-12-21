@@ -23,10 +23,10 @@ class MenuItemController extends ApiController
 
     public function upload(Request $request): array
     {
-            $file = $request->menu_items;
-            $path = public_path('/files');
-            $this->importService->uploadFileData($path, $file);
+        $file = $request->menu_items;
+        $path = public_path('/files');
+        $this->importService->uploadFileData($path, $file);
 
-            return $this->successListMessage('File has been uploaded successfully');
+        return $this->successCreateMessage('File has been uploaded successfully');
     }
 }
