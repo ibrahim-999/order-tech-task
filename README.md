@@ -1,26 +1,88 @@
-# Lumen PHP Framework
+## Task Description
+Write a RESTful web service that ingests JSON files, parses them, and stores them in a
+normalized database. The following endpoints are expected.
+1. An endpoint to which a user can upload a .json file.
+2. An endpoint in which a user can view all menu items.
+3. An endpoint in which a user can view a menu item.
+4. An endpoint in which a user can delete a menu item.
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+Normally we would give a developer more room regarding framework choices, but due to the
+nature of this test, you must make use of Laravel Lumen 8.
+The file upload endpoint should only accept a .json file, with the following structure:
+`{
+"MenuItems": [
+{
+"ItemName": <string>,
+"ItemDescription": <string>,
+"Price": <float>,
+"ItemOptions": [
+{
+"Name": <string>,
+"MaxQty": <int>,
+"Price": <float>
+}
+]
+}
+]
+}`
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Desirable Output
+1. A working solution.
+2. Code quality (organization, modularity, modeling, testing, .etc).
+3. Your ability to follow instructions.
+4. Well documented code.
+5. Clearly defined models.
+6. RESTful design.
+## Development Stack
+- PHP Lumen (Micro-Framework By Lumen).
+- Programing language PHP 8.1
+- Mysql database
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+## Installation
 
-## Official Documentation
+### Step 1.
+- Begin by cloning this repository to your machine
+```
+git clone `repo url` 
+```
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+- Install dependencies
+```
+composer install
+```
+- Create environmental file and variables
+```
+cp .env.example .env
+```
 
-## Contributing
+### Step 2
+- Next, create a new database and reference its name and username/password in the project's .env file.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=database_name
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+- Run migration
+```
+php artisan migrate or php artisan migrate:fresh
+```
+### Step 3
+- before start, you need to run table seeders
+```
+php artisan db:seed
+```
+### Step 4
+- To start the server, run the command below
+```
+php -S localhost:8000 -t public or php -S 127.0.0.1:8000 -t public
+```
+## Application Route
+```
+http://127.0.0.1:8000/api/v1/       
+```
+## Author
+- ibrahim khalaf
