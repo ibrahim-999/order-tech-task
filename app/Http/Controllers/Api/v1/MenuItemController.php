@@ -27,6 +27,6 @@ class MenuItemController extends ApiController
             $path = public_path('/files');
             $this->importService->uploadFileData($path, $file);
 
-            return $this->successListMessage('File has uploaded successfully');
+            return $this->successListMessage('File has been uploaded successfully');
     }
 }
