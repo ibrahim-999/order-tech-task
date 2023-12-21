@@ -27,7 +27,7 @@ class MenuService
 
     public function getMenuItemById($id)
     {
-        return MenuItem::find($id);
+        return MenuItem::with('menuItemOptions')->find($id);
     }
 
     public function deleteMenuItem($id)
@@ -39,5 +39,15 @@ class MenuService
         }
 
         return false;
+    }
+
+    public function with(array $relations)
+    {
+        try {
+            $this->menuItemModel = $this->menuItemModel->with($relations);
+            return $this;
+        } catch (\Throwable $exception) {
+            throw $exception;
+        }
     }
 }

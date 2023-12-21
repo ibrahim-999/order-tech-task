@@ -20,7 +20,6 @@ class MenuItemController extends ApiController
         $this->importService = $importService;
         $this->menuService = $menuService;
     }
-
     public function upload(Request $request): array
     {
         $file = $request->menu_items;
@@ -29,8 +28,7 @@ class MenuItemController extends ApiController
 
         return $this->successCreateMessage('File has been uploaded successfully');
     }
-
-    public function viewAll()
+    public function viewAll(): \Illuminate\Http\JsonResponse
     {
         $menuItems = $this->menuService->getAllMenuItems();
         if ($menuItems)
@@ -41,12 +39,13 @@ class MenuItemController extends ApiController
     }
     public function view($id): \Illuminate\Http\JsonResponse
     {
-        $menuItem = $this->importService->showFileData($id,public_path('menuItems.json'));
-        if ($menuItem ) {
-            return $this->successShowDataResponse($menuItem, 'menu item');
-        }else {
-            return $this->failExceptionMessage(404, 'Menu item not found');
+        $menuItem = $this->menuService->getMenuItemById($id);
+        if ($menuItem) {
+            return $this->successShowDataResponse($menuItem, 'Show');
+        } else {
+            return $this->failResourceNotFoundMessage('Menu item', 'Menu item not found');
         }
 
     }
+
 }
