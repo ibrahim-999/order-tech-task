@@ -15,6 +15,6 @@ class MenuItemOptionSeeder extends Seeder
      */
     public function run()
     {
-         
+
     }
 }

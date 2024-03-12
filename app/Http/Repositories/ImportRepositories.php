@@ -26,7 +26,7 @@ class ImportRepositories
                         'menu_item_id' => $menuItem->id,
                     ]);
                 }
-            } 
+            }
         }
     }
 

@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateMenuItemOptionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('menu_item_options', function (Blueprint $table) {
@@ -29,11 +24,6 @@ class CreateMenuItemOptionsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('menu_item_options');

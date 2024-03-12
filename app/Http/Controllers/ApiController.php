@@ -12,6 +12,7 @@ class ApiController extends BaseController
 
     protected $service;
     protected $params;
+
     public $request;
 
     public function __construct(Request $request)
