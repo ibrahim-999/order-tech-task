@@ -62,6 +62,7 @@ class MenuItemControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(['data' => $menuItems, 'message' => '', 'type' => 'list'], $response->getData(true));
     }
+
     public function testView()
     {
         $id = 1;
@@ -93,6 +94,34 @@ class MenuItemControllerTest extends TestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
         $this->assertEquals(['error' => 'Menu item not found'], $response->getData(true));
+    }
+
+    public function testDelete()
+    {
+        $id = 1;
+
+        $this->menuService->shouldReceive('deleteMenuItem')
+            ->once()
+            ->with($id)
+            ->andReturn(true);
+
+        $response = $this->menuItemController->delete($id);
+
+        $this->assertEquals(['message' => 'Deleted'], $response);
+    }
+
+    public function testDeleteWithInvalidId()
+    {
+        $id = 99;
+
+        $this->menuService->shouldReceive('deleteMenuItem')
+            ->once()
+            ->with($id)
+            ->andReturn(false);
+
+        $response = $this->menuItemController->delete($id);
+
+        $this->assertEquals(['error' => 'Menu item not found'], $response);
     }
 
 }
