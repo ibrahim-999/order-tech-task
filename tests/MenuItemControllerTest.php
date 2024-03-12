@@ -62,5 +62,37 @@ class MenuItemControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(['data' => $menuItems, 'message' => '', 'type' => 'list'], $response->getData(true));
     }
+    public function testView()
+    {
+        $id = 1;
+        $menuItem = ['id' => $id, 'name' => 'Item 1'];
+
+        $this->menuService->shouldReceive('getMenuItemById')
+            ->once()
+            ->with($id)
+            ->andReturn($menuItem);
+
+        $response = $this->menuItemController->view($id);
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(['data' => $menuItem, 'message' => 'Show'], $response->getData(true));
+    }
+
+    public function testViewWithInvalidId()
+    {
+        $id = 99;
+
+        $this->menuService->shouldReceive('getMenuItemById')
+            ->once()
+            ->with($id)
+            ->andReturn(null);
+
+        $response = $this->menuItemController->view($id);
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+        $this->assertEquals(['error' => 'Menu item not found'], $response->getData(true));
+    }
 
 }
