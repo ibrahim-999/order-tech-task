@@ -48,4 +48,19 @@ class MenuItemControllerTest extends TestCase
         $this->assertEquals(['message' => 'File has been uploaded successfully'], $response);
     }
 
+    public function testViewAll()
+    {
+        $menuItems = ['item1', 'item2'];// add json items
+
+        $this->menuService->shouldReceive('getAllMenuItems')
+            ->once()
+            ->andReturn($menuItems);
+
+        $response = $this->menuItemController->viewAll();
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(['data' => $menuItems, 'message' => '', 'type' => 'list'], $response->getData(true));
+    }
+
 }
